@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { ActivityProvider } from "@/context/ActivityContext";
 import { PlayerProvider } from "@/context/PlayerContext";
 import MediaPlayer from "@/components/MediaPlayer";
+import SWRegister from "@/components/SWRegister";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -28,13 +29,11 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden antialiased">
+        <SWRegister />
         <ThemeProvider defaultTheme="default" attribute="data-theme">
           <ActivityProvider>
             <PlayerProvider>
-              {/* Main Page Viewport with Bottom Padding for Floating Deck */}
               <main className="flex-1 w-full pb-28 sm:pb-32">{children}</main>
-
-              {/* Global Persistent Retro Media Player */}
               <MediaPlayer />
             </PlayerProvider>
           </ActivityProvider>

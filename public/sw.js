@@ -1,4 +1,4 @@
-const CACHE_NAME = "caelum-wave-v1";
+const CACHE_NAME = "caelum-wave-v2";
 const ASSETS_TO_CACHE = [
   "/",
   "/manifest.json",
@@ -6,11 +6,18 @@ const ASSETS_TO_CACHE = [
   "/icons/icon-512.png",
 ];
 
-// Install: Pre-cache core app assets
+// Install: Cache core app assets gracefully
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
+    caches.open(CACHE_NAME).then(async (cache) => {
+      // Safely cache each asset individually so one missing asset doesn't break the installation
+      for (const asset of ASSETS_TO_CACHE) {
+        try {
+          await cache.add(asset);
+        } catch (err) {
+          console.warn(`SW: Failed to cache asset ${asset}:`, err);
+        }
+      }
     }),
   );
   self.skipWaiting();
@@ -32,7 +39,7 @@ self.addEventListener("activate", (event) => {
 
 // Fetch: Serve from cache when offline (skip stream API endpoints)
 self.addEventListener("fetch", (event) => {
-  // Let IndexedDB handle audio streams directly
+  // Let IndexedDB / media engine handle audio streams directly
   if (event.request.url.includes("/api/stream")) {
     return;
   }
