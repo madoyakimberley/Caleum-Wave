@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/search": [
-      "./node_modules/cheerio/**/*",
+      "./node_modules/cheerio*/**/*",
       "./node_modules/dom*/**/*",
       "./node_modules/htmlparser2/**/*",
       "./node_modules/css-select/**/*",
