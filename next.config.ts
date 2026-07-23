@@ -4,12 +4,13 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/search": [
       "./node_modules/cheerio/**/*",
-      "./node_modules/domutils/**/*",
+      "./node_modules/dom*/**/*",
       "./node_modules/htmlparser2/**/*",
       "./node_modules/css-select/**/*",
-      "./node_modules/domhandler/**/*",
-      "./node_modules/dom-serializer/**/*",
       "./node_modules/entities/**/*",
+      "./node_modules/boolbase/**/*",
+      "./node_modules/nth-check/**/*",
+      "./node_modules/parse5/**/*",
     ],
   },
 };
