@@ -1,5 +1,5 @@
 // src/app/api/search/route.ts
-import "cheerio";
+import * as cheerio from "cheerio";
 import { NextRequest, NextResponse } from "next/server";
 import yts from "yt-search";
 
