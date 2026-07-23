@@ -1,15 +1,28 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function BottomNavbar() {
+  const pathname = usePathname();
+
+  // Helper function to easily toggle between active and inactive classes
+  const getLinkClasses = (path: string) => {
+    const baseClasses =
+      "flex flex-col items-center justify-center p-1 active:translate-y-1 active:translate-x-1 transition-all border-2";
+
+    if (pathname === path) {
+      // Active state classes
+      return `${baseClasses} bg-secondary-container text-secondary border-primary`;
+    }
+    // Inactive state classes
+    return `${baseClasses} text-on-surface-variant border-transparent hover:bg-surface-container-highest`;
+  };
+
   return (
     <nav className="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-2 bg-surface-container-low border-t-[4px] border-outline-variant z-50">
-      {/* Home (Active) */}
-      <Link
-        href="/"
-        className="flex flex-col items-center justify-center bg-secondary-container text-secondary border-2 border-primary p-1 active:translate-y-1 active:translate-x-1 transition-all"
-      >
+      {/* Home */}
+      <Link href="/" className={getLinkClasses("/")}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24px"
@@ -24,10 +37,7 @@ export default function BottomNavbar() {
       </Link>
 
       {/* Library */}
-      <Link
-        href="/library"
-        className="flex flex-col items-center justify-center text-on-surface-variant p-1 hover:bg-surface-container-highest active:translate-y-1 active:translate-x-1 transition-all"
-      >
+      <Link href="/library" className={getLinkClasses("/library")}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24px"
@@ -42,10 +52,7 @@ export default function BottomNavbar() {
       </Link>
 
       {/* Search */}
-      <Link
-        href="/search"
-        className="flex flex-col items-center justify-center text-on-surface-variant p-1 hover:bg-surface-container-highest active:translate-y-1 active:translate-x-1 transition-all"
-      >
+      <Link href="/search" className={getLinkClasses("/search")}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24px"

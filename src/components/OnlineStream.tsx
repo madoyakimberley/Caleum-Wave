@@ -217,7 +217,7 @@ async function cacheTrackInitialChunk(
       ? AbortSignal.any([signal, controller.signal])
       : controller.signal;
 
-    const res = await fetch(`/api/stream?id=${encodeURIComponent(trackId)}`, {
+    const res = await fetch(`https://caleum-wave.vercel.app/api/stream?id=${encodeURIComponent(trackId)}`, {
       headers: { Range: "bytes=0-" },
       signal: combinedSignal,
     });
@@ -290,7 +290,7 @@ async function finishTrackDownloadInBackground(
       headers.Range = `bytes=${record.totalBytes}-`;
     }
 
-    const res = await fetch(`/api/stream?id=${encodeURIComponent(trackId)}`, {
+    const res = await fetch(`https://caleum-wave.vercel.app/api/stream?id=${encodeURIComponent(trackId)}`, {
       headers,
       signal,
     });
@@ -492,7 +492,7 @@ export default function OnlineStream({ initialQuery = "" }: OnlineStreamProps) {
     action: "initial" | "load_more",
   ): Promise<string> => {
     try {
-      const res = await fetch("/api/roast", {
+      const res = await fetch("https://caleum-wave.vercel.app/api/roast", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query, action }),

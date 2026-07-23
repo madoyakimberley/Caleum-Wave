@@ -219,3 +219,13 @@ __marimo__/
 node_modules/
 .env
 .next/
+node_modules/
+.next/
+out/
+.DS_Store
+*.crdownload
+
+# Ignore heavy Android build binaries
+android/app/build/
+android/.gradle/
+android/build/

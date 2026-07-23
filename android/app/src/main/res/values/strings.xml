@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Caelum Wave Player</string>
+    <string name="title_activity_main">Caelum Wave Player</string>
+    <string name="package_name">com.caelum.wave</string>
+    <string name="custom_url_scheme">com.caelum.wave</string>
+</resources>

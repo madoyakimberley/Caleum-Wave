@@ -78,7 +78,7 @@ export async function cacheTrackInBackground(
   if (cached?.blob) return cached.blob;
 
   try {
-    const res = await fetch(`/api/stream?id=${encodeURIComponent(trackId)}`, {
+    const res = await fetch(`https://caleum-wave.vercel.app/api/stream?id=${encodeURIComponent(trackId)}`, {
       signal,
     });
 
