@@ -24,9 +24,20 @@ jobs:
           java-version: '17'
 
       - name: Install Dependencies
-        run: npm ci || npm install
+        run: |
+          npm install @capacitor/core @capacitor/android @capacitor/cli
+          npm ci || npm install
 
-      - name: Build Next.js
+      - name: Ensure Capacitor Config & Android Platform
+        run: |
+          if [ ! -f "capacitor.config.json" ] && [ ! -f "capacitor.config.ts" ]; then
+            npx @capacitor/cli init "Caelum Wave Player" "com.caelum.wave" --web-dir "out"
+          fi
+          if [ ! -d "android" ]; then
+            npx @capacitor/cli add android
+          fi
+
+      - name: Build Next.js Static Export
         run: npm run build
 
       - name: Sync Capacitor
