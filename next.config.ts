@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ["yt-search", "cheerio"],
+  transpilePackages: ["yt-search"],
 };
 
 export default nextConfig;
