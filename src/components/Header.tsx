@@ -13,7 +13,7 @@ export default function Header() {
           />
         </div>
         <h1 className="font-headline-md text-headline-md text-primary tracking-tighter">
-          Caelum Wave
+          Caelum Wave- No More Ads
         </h1>
       </div>
     </header>
