@@ -15,7 +15,6 @@ RUN npm install
 
 COPY . .
 
-# 👈 ADD THIS LINE: Compiles Next.js into the .next folder
 RUN npm run build
 
 EXPOSE 3000
